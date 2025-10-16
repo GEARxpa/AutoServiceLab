@@ -69,7 +69,6 @@
                             <RowDefinition Height="*"/>
                             <RowDefinition Height="*"/>
                         </Grid.RowDefinitions>
-                        
                         <Image Width="200" Grid.Column="0" Grid.RowSpan="4" Stretch="UniformToFill" HorizontalAlignment="Center">
                             <Image.Source>
                                 <Binding Path ="MainImagePath">
@@ -84,10 +83,23 @@
                         <TextBlock Text="{Binding Title}" Grid.Column="1" Grid.Row="0" HorizontalAlignment="Left"  FontSize="20" TextWrapping="Wrap"></TextBlock>
                         <TextBlock Text="{Binding Cost, StringFormat={}{0:0} рублей за}"  Grid.Column="1" Grid.Row="1" HorizontalAlignment="Left"  FontSize="20" ></TextBlock>
                         <TextBlock Text="{Binding Duration}" Grid.Column="1" Grid.Row="1" HorizontalAlignment="Right"  FontSize="20" ></TextBlock>
-                        <TextBlock Text="{Binding DiscountInt, StringFormat=*скидка {0} % }" Opacity="{Binding Discount}" Margin="5" Grid.Column="1" Grid.Row="2" HorizontalAlignment="Left"  FontSize="16" ></TextBlock>
+                        <TextBlock Text="{Binding DiscountInt, StringFormat=*скидка {0} % }" 
+           Margin="5" Grid.Column="1" Grid.Row="2" HorizontalAlignment="Left" FontSize="16">
+                            <TextBlock.Style>
+                                <Style TargetType="TextBlock">
+                                    <Setter Property="Opacity" Value="1"/>
+                                    <Style.Triggers>
+                                        <DataTrigger Binding="{Binding DiscountInt}" Value="0">
+                                            <Setter Property="Opacity" Value="0"/>
+                                        </DataTrigger>
+                                    </Style.Triggers>
+                                </Style>
+                            </TextBlock.Style>
+                        </TextBlock>
                         <StackPanel Grid.Column="1" Grid.Row="3" Orientation="Horizontal">
-                            <Button Name="EditButton" Content="Редактировать" Margin="2"></Button>
-                            <Button Name="DeleteButton" Content="Удалить" Margin="2"></Button>
+                            <Button Name="EditButton" Content="Редактировать" Margin="2" Click="EditButton_Click"></Button>
+                            <Button Name="DeleteButton" Content="Удалить" Margin="2" Click="DeleteButton_Click"></Button>
+                            <Button Name="SignUpButton" Content="Записать" Margin="2" Click="SignUpButton_Click"></Button>
                         </StackPanel>
                     </Grid>
                 </DataTemplate>

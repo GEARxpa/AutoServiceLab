@@ -15,10 +15,6 @@ namespace AutoServiceЯковлев
     
     public partial class ЯковлевАвтосервисEntities : DbContext
     {
-        public ЯковлевАвтосервисEntities()
-            : base("name=ЯковлевАвтосервисEntities")
-        {
-        }
         private static ЯковлевАвтосервисEntities _context;
         public static ЯковлевАвтосервисEntities GetContext()
         {
@@ -26,12 +22,16 @@ namespace AutoServiceЯковлев
                 _context = new ЯковлевАвтосервисEntities();
             return _context;
         }
+        public ЯковлевАвтосервисEntities()
+            : base("name=ЯковлевАвтосервисEntities")
+        {
+        }
+    
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
             throw new UnintentionalCodeFirstException();
         }
-
-
+    
         public virtual DbSet<Client> Client { get; set; }
         public virtual DbSet<ClientService> ClientService { get; set; }
         public virtual DbSet<DocumentByService> DocumentByService { get; set; }
