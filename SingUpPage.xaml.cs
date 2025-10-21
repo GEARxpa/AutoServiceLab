@@ -20,6 +20,10 @@ namespace AutoServiceЯковлев
     /// </summary>
     public partial class SignUpPage : Page
     {
+        
+        public Client SelectedClient { get; set; }
+
+
         public SignUpPage()
         {
             InitializeComponent();
@@ -51,7 +55,7 @@ namespace AutoServiceЯковлев
                 MessageBox.Show(errors.ToString());
                 return;
             }
-            _currentClientService.ClientID = ComboClient.SelectedIndex + 1;
+            _currentClientService.ClientID = SelectedClient.ID;
             _currentClientService.ServiceID = _currentService.ID;
             _currentClientService.StartTime = Convert.ToDateTime(StartDate.Text + " " + TBStart.Text);
             if (_currentClientService.ID == 0)
@@ -64,8 +68,14 @@ namespace AutoServiceЯковлев
             }
             catch (Exception ex)
             {
+
                 MessageBox.Show(ex.Message.ToString());
+
             }
+        }
+        private void ClientSelection_Changed(object sender, RoutedEventArgs e)
+        {
+            SelectedClient = (Client)ComboClient.SelectedValue;
         }
     }
 }

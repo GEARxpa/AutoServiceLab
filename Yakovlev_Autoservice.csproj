@@ -206,6 +206,7 @@
     <Resource Include="Услуги автосервиса\Электрика.png" />
   </ItemGroup>
   <ItemGroup>
+    <Resource Include="img\picture.png" />
     <Content Include="YakovlevModel.Context.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
       <DependentUpon>YakovlevModel.edmx</DependentUpon>

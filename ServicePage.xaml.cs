@@ -214,8 +214,8 @@ namespace AutoServiceЯковлев
         private void Page_IsVisibleChanged(object  sender, DependencyPropertyChangedEventArgs e)
         {
             ЯковлевАвтосервисEntities.GetContext().ChangeTracker.Entries().ToList().ForEach(p => p.Reload());
-            UpdateServices();
             ServiceListView.ItemsSource = ЯковлевАвтосервисEntities.GetContext().Service.ToList();
+            UpdateServices();
         }
         private void SignUpButton_Click(object sender, RoutedEventArgs e)
         {
